@@ -1,1 +1,3 @@
-<p>home works!</p>
+<button (click)="openPopup()">Create New Credit</button>
+
+<app-credit-popup *ngIf="showCreditPopup" (close)="closePopup()"></app-credit-popup>
