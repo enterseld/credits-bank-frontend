@@ -1,1 +1,31 @@
-<p>credits works!</p>
+<div *ngIf="loading">Loading credits...</div>
+<div *ngIf="error">{{ error }}</div>
+
+<div class="credits-grid" *ngIf="!loading && credits.length > 0">
+  <div class="credit-card" *ngFor="let credit of credits">
+    <p><strong>ID:</strong> {{ credit._id }}</p>
+    <p><strong>Credit Type:</strong> {{ credit.creditType.name }}</p>
+    <p><strong>Starting Amount:</strong> {{ credit.startingAmount }}</p>
+    <p><strong>Current Amount:</strong> {{ credit.currentAmount }}</p>
+    <p><strong>Term:</strong> {{ credit.creditType.term }}</p>
+    <p><strong>Conditions:</strong> {{ credit.creditType.conditions }}</p>
+    <p><strong>Created At:</strong> {{ formatDate(credit.createdAt) }}</p>
+    <p><strong>Updated At:</strong> {{ formatDate(credit.updatedAt) }}</p>
+    <button (click)="callUpdate(credit)">Update / Pay</button> 
+  </div>
+</div>
+
+<div *ngIf="!loading && credits.length === 0">No credits found.</div>
+
+<div class="popup" *ngIf="showPopup">
+  <div class="popup-content">
+    <h3>Pay Credit</h3>
+    <p><strong>Credit:</strong> {{ selectedCredit?.creditType.name }}</p>
+    <p><strong>Current Amount:</strong> {{ selectedCredit?.currentAmount }}</p>
+
+    <input type="number" [(ngModel)]="payAmount" placeholder="Enter amount to pay" />
+    <button (click)="payPartial()">Pay Partial</button>
+    <button (click)="payFull()">Pay Full</button>
+    <button class="close-btn" (click)="closePopup()">Close</button>
+  </div>
+</div>
