@@ -1,0 +1,24 @@
+<div class="auth-container">
+  <h2>{{ isLogin ? 'Login' : 'Register' }}</h2>
+
+  <form [formGroup]="isLogin ? loginForm : registerForm" (ngSubmit)="submit()">
+
+    <div *ngIf="!isLogin">
+      <input formControlName="name" placeholder="Name" />
+      <input formControlName="ownershipType" placeholder="Ownership Type" />
+      <input formControlName="address" placeholder="Address" />
+      <input formControlName="contactPerson" placeholder="Contact Person" />
+    </div>
+
+    <input formControlName="phoneNumber" placeholder="Phone Number" />
+    <input formControlName="password" type="password" placeholder="Password" />
+
+    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+    <button type="submit">{{ isLogin ? 'Login' : 'Register' }}</button>
+  </form>
+
+  <button (click)="toggleForm()">
+    {{ isLogin ? 'Switch to Register' : 'Switch to Login' }}
+  </button>
+</div>
