@@ -1,0 +1,40 @@
+.header {
+  display: flex;
+  justify-content: center; /* center buttons */
+  gap: 1rem; /* space between buttons */
+  background: linear-gradient(90deg, #3f51b5, #2196f3); /* nice gradient */
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.header button {
+  background: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.header button:hover {
+  background: #f1f1f1;
+  transform: translateY(-2px);
+}
+
+.header button:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header button {
+    width: 100%;
+    max-width: 250px;
+  }
+}

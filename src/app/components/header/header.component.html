@@ -5,7 +5,7 @@
 
   <button *ngIf="!isLoggedIn()" (click)="goTo('auth')">Login/Register</button>
 
-  <button (click)="goTo('credits')">Credits</button>
+  <button *ngIf="isLoggedIn()" (click)="goTo('credits')">Credits</button>
 
   <button *ngIf="isLoggedIn()" (click)="logout()">Logout</button>
 </nav>

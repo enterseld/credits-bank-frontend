@@ -1,9 +1,9 @@
-// auth-page.component.ts
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { firstValueFrom } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth-page',
@@ -13,12 +13,12 @@ import { firstValueFrom } from 'rxjs';
   styleUrls: ['./auth-page.component.scss']
 })
 export class AuthPageComponent {
-  isLogin = true; // toggle between login/register
+  isLogin = true; 
   loginForm: FormGroup;
   registerForm: FormGroup;
   errorMessage: string = '';
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private router:Router) {
     this.loginForm = this.fb.group({
       phoneNumber: ['', Validators.required],
       password: ['', Validators.required]
@@ -51,6 +51,7 @@ export class AuthPageComponent {
 
         localStorage.setItem('jwt', loginResponse.token);
         alert('Logged in successfully!');
+        this.router.navigate(['/']);
       } else {
         if (this.registerForm.invalid) return;
 
@@ -60,6 +61,7 @@ export class AuthPageComponent {
 
         alert('Registered successfully! You can now login.');
         this.toggleForm();
+        
       }
     } catch (err: any) {
       this.errorMessage = err?.error?.message || 'An error occurred';

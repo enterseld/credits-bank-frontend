@@ -1,19 +1,45 @@
+/* Grid wrapper */
 .profile-grid {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  padding: 2rem;
 }
 
+/* Profile card */
 .profile-card {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 16px;
-  max-width: 400px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 2rem;
   width: 100%;
-  background: #fafafa;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+
+.profile-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+}
+
 
 .profile-card p {
-  margin: 8px 0;
+  margin: 0.8rem 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+.profile-card strong {
+  color: #2196f3;
+  font-weight: 600;
+}
+
+[ngIf] {
+  display: block;
+  text-align: center;
+  font-size: 1.1rem;
+  margin-top: 2rem;
+}
+
+[ngIf].error {
+  color: #d9534f;
 }

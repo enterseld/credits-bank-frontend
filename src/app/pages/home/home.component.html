@@ -1,3 +1,12 @@
-<button (click)="openPopup()">Create New Credit</button>
+<section class="hero">
+  <div class="hero-content">
+    <h1>Manage Your Credits Easily</h1>
+    <p>
+      Track, create, and manage all your credit types in one place. 
+      Simple, fast, and secure.
+    </p>
+    <button (click)="openPopup()">Create New Credit</button>
+  </div>
+</section>
 
 <app-credit-popup *ngIf="showCreditPopup" (close)="closePopup()"></app-credit-popup>

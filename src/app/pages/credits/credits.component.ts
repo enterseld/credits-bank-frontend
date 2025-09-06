@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-credits',
   standalone: true,
@@ -19,7 +19,7 @@ export class CreditsComponent {
   selectedCredit: any = null;
   payAmount: number | null = null;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
     this.getCredits();
@@ -67,6 +67,22 @@ export class CreditsComponent {
           this.closePopup();
         });
     }
+  }
+
+  goToNewCredit() {
+    this.router.navigate(['/home']); 
+  }
+
+  onPayAmountChange(value: string | number) {
+    if (!this.selectedCredit) return;
+    const numValue = typeof value === 'string' ? parseFloat(value) : value;
+    setTimeout(() => {
+      if (isNaN(numValue) || numValue < 1) {
+        this.payAmount = 1;
+      } else if (numValue > this.selectedCredit.currentAmount) {
+        this.payAmount = this.selectedCredit.currentAmount;
+      }
+    }, 0);
   }
 
   payFull() {
