@@ -12,10 +12,12 @@
 
     <input formControlName="phoneNumber" placeholder="Phone Number" />
     <input formControlName="password" type="password" placeholder="Password" />
-
+    <div *ngIf="isLogin">For testing +380501234567:mypassword123</div>
     <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
 
     <button type="submit">{{ isLogin ? 'Login' : 'Register' }}</button>
+
+
   </form>
 
   <button (click)="toggleForm()">
